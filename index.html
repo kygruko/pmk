@@ -1,0 +1,2252 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ПМК-74 | Производство металлоконструкций в Челябинске</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-dark: #1e40af;
+            --accent: #3b82f6;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* Кнопки */
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--light);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-accent:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Шапка */
+        .header {
+            background: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .logo-sub {
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            padding: 5px 0;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            margin: 4px 0;
+            transition: 0.3s;
+        }
+
+        .phone {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Главный экран */
+        .hero {
+            background: linear-gradient(rgba(30, 58, 138, 0.9), rgba(30, 58, 138, 0.8));
+            color: white;
+            padding: 180px 0 100px;
+            margin-top: 70px;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .hero-features {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 25px;
+            border-radius: var(--radius);
+            backdrop-filter: blur(10px);
+        }
+
+        .feature i {
+            font-size: 24px;
+            color: var(--accent);
+        }
+
+        /* Преимущества */
+        .advantages {
+            padding: 100px 0;
+            background: var(--light);
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .advantage-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .advantage-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .advantage-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .advantage-icon i {
+            font-size: 36px;
+            color: var(--primary);
+        }
+
+        .advantage-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        /* Производство */
+        .production {
+            padding: 100px 0;
+        }
+
+        .production-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .production-item {
+            background: var(--light);
+            border-radius: var(--radius);
+            overflow: hidden;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .production-item i {
+            font-size: 60px;
+            color: var(--primary);
+            opacity: 0.3;
+        }
+
+        /* Каталог */
+        .catalog {
+            padding: 100px 0;
+            background: var(--light);
+        }
+
+        .catalog-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .catalog-filters {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 12px 20px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--radius);
+            background: white;
+            font-size: 16px;
+            min-width: 180px;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .catalog-view-toggle {
+            display: flex;
+            gap: 10px;
+        }
+
+        .view-btn {
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--light-gray);
+            background: white;
+            border-radius: var(--radius);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .view-btn:hover {
+            border-color: var(--primary);
+        }
+
+        .view-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .catalog-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            display: table;
+        }
+
+        .catalog-table th {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .catalog-table td {
+            padding: 20px;
+            border-bottom: 1px solid var(--light-gray);
+            vertical-align: middle;
+        }
+
+        .catalog-table tr:hover {
+            background: #f8fafc;
+        }
+
+        .price {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .order-btn {
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .order-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .catalog-cards {
+            display: none;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            transition: transform 0.3s;
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: var(--radius);
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .product-card img:hover {
+            transform: scale(1.05);
+        }
+
+        .catalog-table td:first-child {
+            text-align: center;
+            vertical-align: middle;
+            width: 80px;
+        }
+
+        .catalog-table img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: var(--radius);
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .catalog-table img:hover {
+            border-color: var(--primary);
+        }
+
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .product-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .product-price {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .product-specs {
+            margin: 20px 0;
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .spec-row:last-child {
+            border-bottom: none;
+        }
+
+        .spec-name {
+            color: var(--gray);
+        }
+
+        .spec-value {
+            font-weight: 600;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .btn-details {
+            padding: 10px 20px;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background: white;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            flex: 1;
+        }
+
+        .btn-details:hover {
+            background: var(--light);
+        }
+
+        /* ВАКАНСИИ */
+        .vacancies {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vacancies::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .vacancies .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .vacancies .section-title {
+            color: white;
+        }
+
+        .vacancies .section-title::after {
+            background: white;
+        }
+
+        .vacancies-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .vacancies-icon {
+            text-align: center;
+        }
+
+        .vacancies-icon i {
+            font-size: 180px;
+            color: rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .vacancies-text h3 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .vacancies-text p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .vacancies-list {
+            margin-bottom: 40px;
+        }
+
+        .vacancy-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s;
+        }
+
+        .vacancy-item:hover {
+            transform: translateX(10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .vacancy-item i {
+            font-size: 30px;
+            color: var(--accent);
+        }
+
+        .vacancy-info h4 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .vacancy-info p {
+            font-size: 14px;
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        .vacancy-salary {
+            color: #4ade80;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .vacancy-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            font-size: 12px;
+            margin-right: 8px;
+            margin-top: 8px;
+        }
+
+        .vacancy-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .vacancy-button .btn {
+            background: white;
+            color: var(--primary);
+            padding: 16px 40px;
+            font-size: 18px;
+        }
+
+        .vacancy-button .btn:hover {
+            background: var(--light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* О компании */
+        .about {
+            padding: 100px 0;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        /* Контакты */
+        .contacts {
+            padding: 100px 0;
+            background: var(--light);
+        }
+
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+        }
+
+        .contact-info h3 {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            align-items: flex-start;
+        }
+
+        .contact-item i {
+            color: var(--primary);
+            font-size: 20px;
+            margin-top: 5px;
+        }
+
+        .contact-item strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .contact-item a {
+            color: var(--dark);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary);
+        }
+
+        .map {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 400px;
+        }
+
+        .map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Подвал */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .footer-logo {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footer-nav a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-nav a:hover {
+            color: white;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 18px;
+        }
+
+        .footer-social a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Стиль для кнопки MAX (оранжевый градиент) */
+        .footer-social a.max {
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+        }
+
+        .footer-social a.max:hover {
+            background: linear-gradient(135deg, #feb47b, #ff7e5f);
+        }
+
+        /* Стиль для кнопки Telegram (синий) */
+        .footer-social a.telegram {
+            background: #0088cc;
+        }
+
+        .footer-social a.telegram:hover {
+            background: #0077b5;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-gray);
+            font-size: 14px;
+        }
+
+        /* Модальные окна */
+        .product-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius);
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--gray);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .modal-close:hover {
+            background: var(--light);
+        }
+
+        #imageModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #imageModal button {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            z-index: 3001;
+        }
+
+        #modalImage {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .contacts-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .hero-title {
+                font-size: 40px;
+            }
+
+            .vacancies-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .vacancies-icon i {
+                font-size: 120px;
+            }
+
+            .vacancies-icon {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .nav-toggle {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 40px;
+                gap: 0;
+                transition: 0.3s;
+                z-index: 999;
+                overflow-y: auto;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-menu a {
+                display: block;
+                padding: 20px;
+                border-bottom: 1px solid var(--light-gray);
+            }
+            
+            .nav-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .nav-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .nav-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+            
+            .hero {
+                padding: 140px 0 60px;
+                min-height: auto;
+            }
+            
+            .hero-title {
+                font-size: 32px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .hero-features {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .advantages, .production, .catalog, .vacancies, .about, .contacts {
+                padding: 60px 0;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .catalog-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .catalog-filters {
+                flex-direction: column;
+            }
+            
+            .filter-select {
+                width: 100%;
+            }
+            
+            .catalog-view-toggle {
+                display: none;
+            }
+            
+            .catalog-table {
+                display: none;
+            }
+            
+            .catalog-cards {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                padding: 25px;
+            }
+
+            .vacancies-text h3 {
+                font-size: 28px;
+            }
+
+            .vacancy-item {
+                padding: 15px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                padding: 0 30px;
+            }
+            
+            .hero-title {
+                font-size: 40px;
+            }
+            
+            .advantages-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .catalog-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <span class="logo-text">ПМК-74</span>
+                    <span class="logo-sub">Производство металлоконструкций</span>
+                </a>
+                
+                <nav class="nav">
+                    <button class="nav-toggle" id="navToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <ul class="nav-menu" id="navMenu">
+                        <li><a href="#advantages">Преимущества</a></li>
+                        <li><a href="#production">Производство</a></li>
+                        <li><a href="#catalog">Каталог</a></li>
+                        <li><a href="#vacancies">Вакансии</a></li>
+                        <li><a href="#about">О компании</a></li>
+                        <li><a href="#contacts">Контакты</a></li>
+                    </ul>
+                </nav>
+                
+                <a href="tel:+73511234567" class="phone">
+                    <i class="fas fa-phone"></i>
+                    +7 (351) 123-45-67
+                </a>
+				<div class="footer-social">
+                    <!-- Кнопка MAX (мессенджер) - вставьте ссылку на ваш MAX -->
+                    <a href="https://max.ru/your-profile" class="max" target="_blank" title="Написать в MAX">
+                        <i class="fas fa-comment-dots"></i>
+                    </a>
+                    <!-- Кнопка Telegram - вставьте ссылку на ваш Telegram -->
+                    <a href="https://t.me/your-username" class="telegram" target="_blank" title="Написать в Telegram">
+                        <i class="fab fa-telegram-plane"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Главный экран -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Производство профнастила и металлочерепицы любой сложности</h1>
+                <p class="hero-subtitle">Собственное производство в Челябинске. От проекта до установки под ключ</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="document.querySelector('#catalog').scrollIntoView({behavior: 'smooth'})">Смотреть каталог</button>
+                    <button class="btn btn-secondary" onclick="document.querySelector('#vacancies').scrollIntoView({behavior: 'smooth'})">Хочу работать у вас</button>
+                </div>
+                <div class="hero-features">
+                    <div class="feature">
+                        <i class="fas fa-industry"></i>
+                        <span>Собственный производственный цех</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-award"></i>
+                        <span>15 лет на рынке</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Гарантия на все работы</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section id="advantages" class="advantages">
+        <div class="container">
+            <h2 class="section-title">Наши преимущества</h2>
+            <div class="advantages-grid">
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Современное оборудование</h3>
+                    <p>Используем современные станки ЧПУ для точного производства металлоконструкций</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Опытная команда</h3>
+                    <p>Специалисты с опытом работы более 10 лет в металлообработке</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Соблюдение сроков</h3>
+                    <p>Четкое планирование и контроль на всех этапах производства</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>Гарантия качества</h3>
+                    <p>Контроль качества на всех этапах производства, сертифицированные материалы</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Производство (слайдер) -->
+    <section id="production" class="production">
+        <div class="container">
+            <h2 class="section-title">Наше производство</h2>
+            <div style="position: relative; width: 100%; overflow: hidden; border-radius: var(--radius);">
+                <div style="display: flex; transition: transform 0.5s ease;" id="slider">
+                    <div style="min-width: 100%; height: 500px; cursor: pointer;" onclick="openFullscreen(0)">
+                    <img src="images/production-1.png" alt="Производство" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="min-width: 100%; height: 500px; cursor: pointer;" onclick="openFullscreen(1)">
+                    <img src="images/production-2.jpg" alt="Производство" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="min-width: 100%; height: 500px; cursor: pointer;" onclick="openFullscreen(2)">
+                    <img src="images/production-3.png" alt="Производство" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="min-width: 100%; height: 500px; cursor: pointer;" onclick="openFullscreen(3)">
+                    <img src="images/production-4.png" alt="Производство" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="min-width: 100%; height: 500px; cursor: pointer;" onclick="openFullscreen(4)">
+                    <img src="images/production-5.png" alt="Производство" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+				<div style="min-width: 100%; height: 500px; cursor: pointer;" onclick="openFullscreen(5)">
+                    <img src="images/production-6.png" alt="Производство" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+				<div style="min-width: 100%; height: 500px; cursor: pointer;" onclick="openFullscreen(6)">
+                    <img src="images/production-7.png" alt="Производство" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+				<div style="min-width: 100%; height: 500px; cursor: pointer;" onclick="openFullscreen(7)">
+                    <img src="images/production-8.png" alt="Производство" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+				<div style="min-width: 100%; height: 500px; cursor: pointer;" onclick="openFullscreen(8)">
+                    <img src="images/production-9.png" alt="Производство" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+				<div style="min-width: 100%; height: 500px; cursor: pointer;" onclick="openFullscreen(9)">
+                    <img src="images/production-10.png" alt="Производство" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </div>
+                
+                <!-- Кнопки управления -->
+                <button style="position: absolute; top: 50%; left: 20px; transform: translateY(-50%); background: rgba(30, 58, 138, 0.8); color: white; border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; font-size: 24px; display: flex; align-items: center; justify-content: center; z-index: 10;" onclick="slide(-1)">←</button>
+                <button style="position: absolute; top: 50%; right: 20px; transform: translateY(-50%); background: rgba(30, 58, 138, 0.8); color: white; border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; font-size: 24px; display: flex; align-items: center; justify-content: center; z-index: 10;" onclick="slide(1)">→</button>
+                
+                    <!-- Точки навигации -->
+            <div style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10;">
+                <div style="width: 12px; height: 12px; background: white; border-radius: 50%; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.3);" onclick="goToSlide(0)"></div>
+                <div style="width: 12px; height: 12px; background: rgba(255,255,255,0.5); border-radius: 50%; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.3);" onclick="goToSlide(1)"></div>
+                <div style="width: 12px; height: 12px; background: rgba(255,255,255,0.5); border-radius: 50%; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.3);" onclick="goToSlide(2)"></div>
+                <div style="width: 12px; height: 12px; background: rgba(255,255,255,0.5); border-radius: 50%; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.3);" onclick="goToSlide(3)"></div>
+                <div style="width: 12px; height: 12px; background: rgba(255,255,255,0.5); border-radius: 50%; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.3);" onclick="goToSlide(4)"></div>
+                <div style="width: 12px; height: 12px; background: rgba(255,255,255,0.5); border-radius: 50%; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.3);" onclick="goToSlide(5)"></div>
+                <div style="width: 12px; height: 12px; background: rgba(255,255,255,0.5); border-radius: 50%; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.3);" onclick="goToSlide(6)"></div>
+                <div style="width: 12px; height: 12px; background: rgba(255,255,255,0.5); border-radius: 50%; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.3);" onclick="goToSlide(7)"></div>
+                <div style="width: 12px; height: 12px; background: rgba(255,255,255,0.5); border-radius: 50%; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.3);" onclick="goToSlide(8)"></div>
+                <div style="width: 12px; height: 12px; background: rgba(255,255,255,0.5); border-radius: 50%; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.3);" onclick="goToSlide(9)"></div>
+				<div style="width: 12px; height: 12px; background: rgba(255,255,255,0.5); border-radius: 50%; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.3);" onclick="goToSlide(10)"></div>
+			</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Каталог -->
+    <section id="catalog" class="catalog">
+        <div class="container">
+            <h2 class="section-title">Каталог товаров</h2>
+            
+            <div class="catalog-controls">
+                <div class="catalog-filters">
+                    <select class="filter-select" id="categoryFilter">
+                        <option value="all">Все категории</option>
+                        <option value="profiled-sheet">Профнастил</option>
+                        <option value="roofing">Кровельные материалы</option>
+                        <option value="pipes">Трубы профильные</option>
+                        <option value="fasteners">Крепеж</option>
+                    </select>
+                    
+                    <select class="filter-select" id="sortBy">
+                        <option value="name">По названию</option>
+                        <option value="price_asc">По цене (дешевые)</option>
+                        <option value="price_desc">По цене (дорогие)</option>
+                    </select>
+                </div>
+                
+                <div class="catalog-view-toggle">
+                    <button class="view-btn active" data-view="table">
+                        <i class="fas fa-list"></i>
+                    </button>
+                    <button class="view-btn" data-view="cards">
+                        <i class="fas fa-th-large"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Таблица -->
+            <table class="catalog-table" id="productsTable">
+                <thead>
+                    <tr>
+                        <th>Изображение</th>
+                        <th>Наименование</th>
+                        <th>Характеристики</th>
+                        <th>Цена</th>
+                        <th>Наличие</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Данные через JS -->
+                </tbody>
+            </table>
+            
+            <!-- Карточки -->
+            <div class="catalog-cards" id="productsCards">
+                <!-- Данные через JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- НОВЫЙ РАЗДЕЛ: ВАКАНСИИ -->
+    <section id="vacancies" class="vacancies">
+        <div class="container">
+            <h2 class="section-title">Присоединяйся к нашей команде</h2>
+            <div class="vacancies-content">
+                <div class="vacancies-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="vacancies-text">
+                    <h3>Работай с нами</h3>
+                    <p>Мы постоянно растем и развиваемся. Нам нужны профессионалы, которые хотят строить карьеру и работать на современном оборудовании.</p>
+                    
+             <!--       <div class="vacancies-list">
+                        <div class="vacancy-item">
+                            <i class="fas fa-welder"></i>
+                            <div class="vacancy-info">
+                                <h4>Сварщик (аргонная, полуавтомат)</h4>
+                                <p>Опыт работы от 3 лет, наличие удостоверения. Работа на современном оборудовании.</p>
+                                <div class="vacancy-salary">от 80 000 ₽</div>
+                                <span class="vacancy-tag">Полный день</span>
+                                <span class="vacancy-tag">Опыт от 3 лет</span>
+                            </div>
+                        </div>
+                        
+                        <div class="vacancy-item">
+                            <i class="fas fa-ruler-combined"></i>
+                            <div class="vacancy-info">
+                                <h4>Инженер-конструктор</h4>
+                                <p>Разработка чертежей КМ, КМД. Знание AutoCAD, Компас 3D, SolidWorks.</p>
+                                <div class="vacancy-salary">от 70 000 ₽</div>
+                                <span class="vacancy-tag">Офис/Удаленно</span>
+                                <span class="vacancy-tag">Проектирование</span>
+                            </div>
+                        </div>
+                        
+                        <div class="vacancy-item">
+                            <i class="fas fa-tools"></i>
+                            <div class="vacancy-info">
+                                <h4>Оператор станков с ЧПУ</h4>
+                                <p>Настройка и обслуживание станков плазменной и лазерной резки.</p>
+                                <div class="vacancy-salary">от 65 000 ₽</div>
+                                <span class="vacancy-tag">Сменный график</span>
+                                <span class="vacancy-tag">Обучение</span>
+                            </div>
+                        </div>
+                        
+                        <div class="vacancy-item">
+                            <i class="fas fa-paint-roller"></i>
+                            <div class="vacancy-info">
+                                <h4>Маляр по металлу</h4>
+                                <p>Окраска металлоконструкций. Опыт работы с краскопультом.</p>
+                                <div class="vacancy-salary">от 55 000 ₽</div>
+                                <span class="vacancy-tag">Вахта</span>
+                                <span class="vacancy-tag">Проживание</span>
+                            </div>
+                        </div>
+                        
+                        <div class="vacancy-item">
+                            <i class="fas fa-truck"></i>
+                            <div class="vacancy-info">
+                                <h4>Водитель-экспедитор (кат. C, E)</h4>
+                                <p>Доставка металлоконструкций по Челябинску и области.</p>
+                                <div class="vacancy-salary">от 60 000 ₽</div>
+                                <span class="vacancy-tag">Свой транспорт</span>
+                                <span class="vacancy-tag">Разъезды</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="vacancy-button">
+                        <button class="btn btn-accent" onclick="document.querySelector('#contacts').scrollIntoView({behavior: 'smooth'})">
+                            Отправить резюме <i class="fas fa-arrow-right" style="margin-left: 10px;"></i>
+                        </button>
+                    </div>  -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- О компании -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>О компании ПМК-74</h3>
+                    <p>Компания ПМК-74 специализируется на производстве профнастила и металлочерепицы в Челябинске и Челябинской области. Мы работаем на рынке с 2008 года и за это время зарекомендовали себя как надежного партнера для сотен предприятий.</p>
+                    <p>Наша компания обладает собственным производственным цехом площадью 2000 м², оснащенным современным оборудованием.</p>
+                    <p>Основные направления деятельности: производство профнастила и металлочерепицы и поставка металлопроката.</p>
+                    
+                    <div class="about-stats">
+                        <div class="stat">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Лет опыта</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Реализованных проектов</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Постоянных клиентов</div>
+                        </div>
+                       </div>
+                </div>
+                
+                <div class="contact-info">
+                    <h3>Контакты</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Адрес производства:</strong>
+                            <p>г. Челябинск, ул. Промышленная, 15</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Телефон:</strong>
+                            <p><a href="tel:+73511234567">+7 (351) 123-45-67</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>E-mail:</strong>
+                            <p><a href="mailto:info@74pmk.ru">info@74pmk.ru</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Режим работы:</strong>
+                            <p>Пн-Пт: 9:00-18:00<br>Сб: 10:00-16:00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты с картой -->
+    <section id="contacts" class="contacts">
+        <div class="container">
+            <h2 class="section-title">Как нас найти</h2>
+            <div class="contacts-grid">
+                <div class="contact-info">
+                    <h3>Реквизиты компании</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-building"></i>
+                        <div>
+                            <strong>ООО "ПМК-74"</strong>
+                            <p>ИНН 1234567890</p>
+                            <p>ОГРН 1234567890123</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Юридический адрес:</strong>
+                            <p>454000, г. Челябинск, ул. Кирова, 159</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-truck"></i>
+                        <div>
+                            <strong>Доставка:</strong>
+                            <p>Самовывоз со склада<br>Доставка по Челябинску и области</p>
+                        </div>
+                    </div>
+					<div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>E-mail:</strong>
+                            <p><a href="mailto:info@74pmk.ru">info@74pmk.ru</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-file-pdf"></i>
+                        <div>
+                            <strong>Для соискателей:</strong>
+                            <p>Отправляйте резюме на hr@74pmk.ru</p>
+                        </div>
+						
+                    </div>
+                </div>
+                
+                <div class="map">
+                    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A0a36c1b9f8e8b8b8b8b8b8b8b8b8b8b8&amp;source=constructor" width="100%" height="400" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <span class="logo-text">ПМК-74</span>
+                        <span class="logo-sub">Производство металлоконструкций</span>
+                    </div>
+                    <p>© 2024 Все права защищены</p>
+                </div>
+                <div class="footer-nav">
+                    <a href="#advantages">Преимущества</a>
+                    <a href="#production">Производство</a>
+                    <a href="#catalog">Каталог</a>
+                    <a href="#vacancies">Вакансии</a>
+                    <a href="#about">О компании</a>
+                    <a href="#contacts">Контакты</a>
+                </div>
+                <div class="footer-social">
+                    <!-- Кнопка MAX (мессенджер) - вставьте ссылку на ваш MAX -->
+                    <a href="https://max.ru/your-profile" class="max" target="_blank" title="Написать в MAX">
+                        <i class="fas fa-comment-dots"></i>
+                    </a>
+                    <!-- Кнопка Telegram - вставьте ссылку на ваш Telegram -->
+                    <a href="https://t.me/your-username" class="telegram" target="_blank" title="Написать в Telegram">
+                        <i class="fab fa-telegram-plane"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="copyright">
+                ОГРН 1234567890123, ИНН 1234567890
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно товара -->
+    <div class="product-modal" id="productModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для изображений производства -->
+    <div id="fullscreenModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 4000; align-items: center; justify-content: center;">
+        <button style="position: absolute; top: 20px; right: 30px; background: none; border: none; color: white; font-size: 40px; cursor: pointer; z-index: 4001;" onclick="closeFullscreen()">×</button>
+        <button style="position: absolute; top: 50%; left: 30px; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: white; border: none; width: 60px; height: 60px; border-radius: 50%; cursor: pointer; font-size: 30px; display: flex; align-items: center; justify-content: center; z-index: 4001;" onclick="fullscreenSlide(-1)">←</button>
+        <button style="position: absolute; top: 50%; right: 30px; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: white; border: none; width: 60px; height: 60px; border-radius: 50%; cursor: pointer; font-size: 30px; display: flex; align-items: center; justify-content: center; z-index: 4001;" onclick="fullscreenSlide(1)">→</button>
+        <img id="fullscreenImage" src="" alt="Полноэкранное изображение" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+    </div>
+
+    <!-- Модальное окно для изображений каталога -->
+    <div id="imageModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3000; align-items: center; justify-content: center;">
+        <button style="position: absolute; top: 20px; right: 30px; background: none; border: none; color: white; font-size: 40px; cursor: pointer; z-index: 3001;" onclick="closeImageModal()">×</button>
+        <img id="modalImage" src="" alt="Увеличенное изображение" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+    </div>
+
+    <script>
+        // Данные каталога с изображениями
+        const products = [
+            {
+                id: 1,
+                name: "Профнастил С8 окрашенный",
+                category: "profiled-sheet",
+                specs: "Толщина: 0.4-0.7мм, Высота волны: 8мм",
+                price: "450 ₽/м²",
+                inStock: true,
+                description: "Профнастил марки С8 с полимерным покрытием",
+                image: "images/profnastil-s8-okrashenny.jpg"
+            },
+            {
+                id: 2,
+                name: "Профнастил С8 оцинкованный",
+                category: "profiled-sheet",
+                specs: "Толщина: 0.4-0.7мм, Высота волны: 8мм",
+                price: "380 ₽/м²",
+                inStock: true,
+                description: "Оцинкованный профнастил С8",
+                image: "images/profnastil-s8-ocinkovanny.jpg"
+            },
+            {
+                id: 3,
+                name: "Профнастил С-18 окрашенный",
+                category: "profiled-sheet",
+                specs: "Толщина: 0.4-0.8мм, Высота волны: 18мм",
+                price: "520 ₽/м²",
+                inStock: true,
+                description: "Профнастил С-18 с полимерным покрытием",
+                image: "images/profnastil-s18-okrashenny.jpg"
+            },
+            {
+                id: 4,
+                name: "Профнастил С-18 оцинкованный",
+                category: "profiled-sheet",
+                specs: "Толщина: 0.4-0.8мм, Высота волны: 18мм",
+                price: "420 ₽/м²",
+                inStock: true,
+                description: "Оцинкованный профнастил С-18",
+                image: "images/profnastil-s18-ocinkovanny.jpg"
+            },
+            {
+                id: 5,
+                name: "Металлочерепица Монтеррей",
+                category: "roofing",
+                specs: "Толщина: 0.4-0.5мм, Ширина: 1180мм",
+                price: "650 ₽/м²",
+                inStock: true,
+                description: "Металлочерепица Монтеррей с полимерным покрытием",
+                image: "images/metallocherepica-monterrey.jpg"
+            },
+            {
+                id: 6,
+                name: "Профнастил МП-20 окрашенный",
+                category: "profiled-sheet",
+                specs: "Толщина: 0.45-0.7мм, Высота волны: 20мм",
+                price: "580 ₽/м²",
+                inStock: true,
+                description: "Профнастил МП-20 с полимерным покрытием",
+                image: "images/profnastil-mp20-okrashenny.jpg"
+            },
+            {
+                id: 7,
+                name: "Профнастил МП-20 оцинкованный",
+                category: "profiled-sheet",
+                specs: "Толщина: 0.45-0.7мм, Высота волны: 20мм",
+                price: "480 ₽/м²",
+                inStock: true,
+                description: "Оцинкованный профнастил МП-20",
+                image: "images/profnastil-mp20-ocinkovanny.jpg"
+            },
+            {
+                id: 8,
+                name: "Труба профильная 20х20х1,2мм",
+                category: "pipes",
+                specs: "Размер: 20×20мм, Толщина: 1.2мм",
+                price: "72 ₽/м",
+                inStock: true,
+                description: "Квадратная профильная труба",
+                image: "images/truba-20x20.jpg"
+            },
+            {
+                id: 9,
+                name: "Труба профильная 40х20х1,2мм",
+                category: "pipes",
+                specs: "Размер: 40×20мм, Толщина: 1.2мм",
+                price: "95 ₽/м",
+                inStock: true,
+                description: "Прямоугольная профильная труба",
+                image: "images/truba-40x20.jpg"
+            },
+            {
+                id: 10,
+                name: "Труба профильная 40х20х1,5мм",
+                category: "pipes",
+                specs: "Размер: 40×20мм, Толщина: 1.5мм",
+                price: "117 ₽/м",
+                inStock: true,
+                description: "Прямоугольная профильная труба",
+                image: "images/truba-40x20-15.jpg"
+            },
+            {
+                id: 11,
+                name: "Труба профильная 40х40х1,5мм",
+                category: "pipes",
+                specs: "Размер: 40×40мм, Толщина: 1.5мм",
+                price: "140 ₽/м",
+                inStock: true,
+                description: "Квадратная профильная труба",
+                image: "images/truba-40x40.jpg"
+            },
+            {
+                id: 12,
+                name: "Оцинкованный прокат в рулонах",
+                category: "profiled-sheet",
+                specs: "Толщина: 0.35-1.0мм, Ширина: 1250мм",
+                price: "75 000 ₽/т",
+                inStock: true,
+                description: "Оцинкованная сталь в рулонах",
+                image: "images/prokat-ocinkovanny.jpg"
+            },
+            {
+                id: 13,
+                name: "Прокат с полимерным покрытием",
+                category: "profiled-sheet",
+                specs: "Толщина: 0.4-0.8мм, Ширина: 1250мм",
+                price: "95 000 ₽/т",
+                inStock: true,
+                description: "Сталь с полимерным покрытием",
+                image: "images/prokat-polimerny.jpg"
+            },
+            {
+                id: 14,
+                name: "Саморезы кровельные",
+                category: "fasteners",
+                specs: "4.8×28-50мм, оцинкованные",
+                price: "3.5 ₽/шт",
+                inStock: true,
+                description: "Саморезы для кровли",
+                image: "images/samorezy-krovelnye.jpg"
+            },
+            {
+                id: 15,
+                name: "Саморезы на забор",
+                category: "fasteners",
+                specs: "4.2×16-19мм, оцинкованные",
+                price: "2.8 ₽/шт",
+                inStock: true,
+                description: "Саморезы для забора",
+                image: "images/samorezy-zabor.jpg"
+            },
+            {
+                id: 16,
+                name: "Доборные элементы кровли",
+                category: "roofing",
+                specs: "Конёк, планки, ендова",
+                price: "180 ₽/м",
+                inStock: true,
+                description: "Комплект доборных элементов",
+                image: "images/dobornye-elementy.jpg"
+            },
+            {
+                id: 17,
+                name: "Некондиция профнастила",
+                category: "profiled-sheet",
+                specs: "С дефектами покрытия/геометрии",
+                price: "250 ₽/м²",
+                inStock: true,
+                description: "Профнастил с незначительными дефектами",
+                image: "images/nekondiciya.jpg"
+            },
+            {
+                id: 18,
+                name: "Пленка защитная в рулонах",
+                category: "profiled-sheet",
+                specs: "Ширина: 1250мм, Толщина: 80мкм",
+                price: "35 ₽/м²",
+                inStock: true,
+                description: "Защитная пленка для упаковки",
+                image: "images/plenka-zashitnaya.jpg"
+            }
+        ];
+
+        // ========== НАВИГАЦИЯ ==========
+        function initNavigation() {
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+                });
+                
+                document.querySelectorAll('.nav-menu a').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const targetId = link.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        
+                        if (targetElement) {
+                            navMenu.classList.remove('active');
+                            navToggle.classList.remove('active');
+                            document.body.style.overflow = '';
+                            
+                            const headerHeight = document.querySelector('.header').offsetHeight;
+                            const targetPosition = targetElement.offsetTop - headerHeight;
+                            
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                    });
+                });
+            }
+        }
+
+        // ========== СЛАЙДЕР ПРОИЗВОДСТВА ==========
+        let currentSlide = 0;
+        let currentFullscreenSlide = 0;
+        const slider = document.getElementById('slider');
+        const slides = document.querySelectorAll('#slider > div');
+        const totalSlides = slides.length;
+
+        window.slide = function(direction) {
+            if (!slider || !slides.length) return;
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            updateProductionDots();
+        };
+
+        window.goToSlide = function(index) {
+            if (!slider) return;
+            currentSlide = index;
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            updateProductionDots();
+        };
+
+        function updateProductionDots() {
+            const dots = document.querySelectorAll('#production .dots div, #production [style*="border-radius: 50%;"]');
+            dots.forEach((dot, index) => {
+                if (index < totalSlides) {
+                    dot.style.background = index === currentSlide ? 'white' : 'rgba(255,255,255,0.5)';
+                }
+            });
+        }
+
+        window.openFullscreen = function(slideIndex) {
+            currentFullscreenSlide = slideIndex;
+            const modal = document.getElementById('fullscreenModal');
+            const fullscreenImage = document.getElementById('fullscreenImage');
+            const slides = document.querySelectorAll('#slider img');
+            
+            if (slides[slideIndex]) {
+                fullscreenImage.src = slides[slideIndex].src;
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        };
+
+        window.closeFullscreen = function() {
+            document.getElementById('fullscreenModal').style.display = 'none';
+            document.body.style.overflow = '';
+        };
+
+        window.fullscreenSlide = function(direction) {
+            const slides = document.querySelectorAll('#slider img');
+            currentFullscreenSlide = (currentFullscreenSlide + direction + slides.length) % slides.length;
+            
+            const fullscreenImage = document.getElementById('fullscreenImage');
+            if (slides[currentFullscreenSlide]) {
+                fullscreenImage.src = slides[currentFullscreenSlide].src;
+            }
+        };
+
+        // ========== КАТАЛОГ ==========
+        function openImageModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            if (modal && modalImage) {
+                modalImage.src = imageSrc;
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeImageModal() {
+            document.getElementById('imageModal').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        function renderTable(productsToRender) {
+            const tbody = document.getElementById('tableBody');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+            
+            productsToRender.forEach(product => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>
+                        <img src="${product.image}" 
+                             alt="${product.name}" 
+                             onclick="openImageModal('${product.image}')"
+                             onerror="this.src='https://via.placeholder.com/60x60?text=Нет+фото'">
+                    </td>
+                    <td><strong>${product.name}</strong></td>
+                    <td>${product.specs}</td>
+                    <td class="price">${product.price}</td>
+                    <td>
+                        <span style="color: ${product.inStock ? '#10b981' : '#f59e0b'}; font-weight: 600;">
+                            ${product.inStock ? '✓ В наличии' : '⏱ Под заказ'}
+                        </span>
+                    </td>
+                    <td>
+                        <button class="order-btn" onclick="showProductModal(${product.id})">
+                            Заказать
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function renderCards(productsToRender) {
+            const container = document.getElementById('productsCards');
+            if (!container) return;
+            container.innerHTML = '';
+            
+            productsToRender.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div onclick="openImageModal('${product.image}')">
+                        <img src="${product.image}" 
+                             alt="${product.name}"
+                             onerror="this.src='https://via.placeholder.com/300x200?text=Нет+фото'">
+                    </div>
+                    <div class="product-header">
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-price">${product.price}</div>
+                    </div>
+                    <div class="product-specs">
+                        <div class="spec-row">
+                            <span class="spec-name">Характеристики:</span>
+                            <span class="spec-value">${product.specs}</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-name">Наличие:</span>
+                            <span class="spec-value" style="color: ${product.inStock ? '#10b981' : '#f59e0b'}">
+                                ${product.inStock ? 'В наличии' : 'Под заказ'}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-details" onclick="showProductModal(${product.id})">
+                            Подробнее
+                        </button>
+                        <button class="order-btn" onclick="showProductModal(${product.id})">
+                            Заказать
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function setupFilters() {
+            const categoryFilter = document.getElementById('categoryFilter');
+            const sortBy = document.getElementById('sortBy');
+            
+            if (!categoryFilter || !sortBy) return;
+            
+            function applyFilters() {
+                let filtered = [...products];
+                
+                if (categoryFilter.value !== 'all') {
+                    filtered = filtered.filter(p => p.category === categoryFilter.value);
+                }
+                
+                switch(sortBy.value) {
+                    case 'price_asc':
+                        filtered.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+                        break;
+                    case 'price_desc':
+                        filtered.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+                        break;
+                    case 'name':
+                        filtered.sort((a, b) => a.name.localeCompare(b.name));
+                        break;
+                }
+                
+                renderTable(filtered);
+                renderCards(filtered);
+            }
+            
+            categoryFilter.addEventListener('change', applyFilters);
+            sortBy.addEventListener('change', applyFilters);
+        }
+
+        function setupViewToggle() {
+            const viewButtons = document.querySelectorAll('.view-btn');
+            
+            viewButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const view = this.dataset.view;
+                    
+                    viewButtons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    updateView(view);
+                });
+            });
+        }
+
+        function updateView(view) {
+            const table = document.getElementById('productsTable');
+            const cards = document.getElementById('productsCards');
+            const isMobile = window.innerWidth <= 768;
+            
+            if (!table || !cards) return;
+            
+            if (isMobile) {
+                table.style.display = 'none';
+                cards.style.display = 'grid';
+            } else {
+                table.style.display = view === 'table' ? 'table' : 'none';
+                cards.style.display = view === 'cards' ? 'grid' : 'none';
+            }
+        }
+
+        function checkViewMode() {
+            const isMobile = window.innerWidth <= 768;
+            const activeView = document.querySelector('.view-btn.active');
+            const viewToggle = document.querySelector('.catalog-view-toggle');
+            const table = document.getElementById('productsTable');
+            const cards = document.getElementById('productsCards');
+            
+            if (!table || !cards || !viewToggle) return;
+            
+            if (isMobile) {
+                table.style.display = 'none';
+                cards.style.display = 'grid';
+                viewToggle.style.display = 'none';
+            } else {
+                const view = activeView ? activeView.dataset.view : 'table';
+                updateView(view);
+                viewToggle.style.display = 'flex';
+            }
+        }
+
+        window.showProductModal = function(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            
+            const modal = document.getElementById('productModal');
+            const content = document.getElementById('modalContent');
+            
+            if (!modal || !content) return;
+            
+            content.innerHTML = `
+                <div style="display: flex; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
+                    <img src="${product.image}" 
+                         alt="${product.name}" 
+                         style="width: 150px; height: 150px; object-fit: cover; border-radius: var(--radius); cursor: pointer;"
+                         onclick="openImageModal('${product.image}')"
+                         onerror="this.src='https://via.placeholder.com/150x150?text=Нет+фото'">
+                    <div style="flex: 1;">
+                        <h3 style="margin-bottom: 10px;">${product.name}</h3>
+                        <p style="color: var(--gray);">${product.description}</p>
+                    </div>
+                </div>
+                
+                <div style="background: var(--light); padding: 15px; border-radius: var(--radius); margin: 20px 0;">
+                    <h4 style="margin-bottom: 10px;">Характеристики:</h4>
+                    <p>${product.specs}</p>
+                    <p><strong>Цена:</strong> ${product.price}</p>
+                    <p><strong>Наличие:</strong> <span style="color: ${product.inStock ? '#10b981' : '#f59e0b'}">${product.inStock ? 'В наличии' : 'Под заказ'}</span></p>
+                </div>
+                
+                <form id="orderForm">
+                    <input type="text" placeholder="Ваше имя" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid var(--light-gray); border-radius: var(--radius);" required>
+                    <input type="tel" placeholder="Телефон" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid var(--light-gray); border-radius: var(--radius);" required>
+                    <input type="text" placeholder="Количество" style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid var(--light-gray); border-radius: var(--radius);">
+                    <button type="submit" style="width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: var(--radius);">Заказать</button>
+                </form>
+            `;
+            
+            document.getElementById('orderForm')?.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            });
+            
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        };
+
+        function initCatalog() {
+            renderTable(products);
+            renderCards(products);
+            setupFilters();
+            setupViewToggle();
+            checkViewMode();
+        }
+
+        // ========== МОДАЛЬНЫЕ ОКНА ==========
+        function setupModals() {
+            // Закрытие модального окна товара
+            const modalClose = document.getElementById('modalClose');
+            const productModal = document.getElementById('productModal');
+            
+            if (modalClose) {
+                modalClose.addEventListener('click', function() {
+                    productModal.style.display = 'none';
+                    document.body.style.overflow = '';
+                });
+            }
+            
+            if (productModal) {
+                productModal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.style.display = 'none';
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+            
+            // Закрытие модального окна изображения каталога
+            const imageModal = document.getElementById('imageModal');
+            if (imageModal) {
+                imageModal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeImageModal();
+                    }
+                });
+            }
+            
+            // Закрытие модального окна производства
+            const fullscreenModal = document.getElementById('fullscreenModal');
+            if (fullscreenModal) {
+                fullscreenModal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeFullscreen();
+                    }
+                });
+            }
+        }
+
+        // ========== КЛАВИАТУРА ==========
+        function setupKeyboard() {
+            document.addEventListener('keydown', function(e) {
+                const imageModal = document.getElementById('imageModal');
+                const fullscreenModal = document.getElementById('fullscreenModal');
+                const productModal = document.getElementById('productModal');
+                
+                if (e.key === 'Escape') {
+                    if (imageModal && imageModal.style.display === 'flex') {
+                        closeImageModal();
+                    }
+                    if (fullscreenModal && fullscreenModal.style.display === 'flex') {
+                        closeFullscreen();
+                    }
+                    if (productModal && productModal.style.display === 'flex') {
+                        productModal.style.display = 'none';
+                        document.body.style.overflow = '';
+                    }
+                }
+                
+                if (fullscreenModal && fullscreenModal.style.display === 'flex') {
+                    if (e.key === 'ArrowLeft') {
+                        fullscreenSlide(-1);
+                    } else if (e.key === 'ArrowRight') {
+                        fullscreenSlide(1);
+                    }
+                }
+            });
+        }
+
+        // ========== ИНИЦИАЛИЗАЦИЯ ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            initNavigation();
+            initCatalog();
+            setupModals();
+            setupKeyboard();
+            
+            // Обновление вида при изменении размера окна
+            window.addEventListener('resize', function() {
+                checkViewMode();
+                
+                // Закрываем мобильное меню при увеличении экрана
+                if (window.innerWidth > 768) {
+                    const navMenu = document.getElementById('navMenu');
+                    const navToggle = document.getElementById('navToggle');
+                    if (navMenu && navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        navToggle.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                }
+            });
+        });
+
+        // Делаем функции глобальными
+        window.openImageModal = openImageModal;
+        window.closeImageModal = closeImageModal;
+    </script>
+</body>
+</html>
